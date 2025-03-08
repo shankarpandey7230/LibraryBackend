@@ -2,11 +2,16 @@ import express from 'express'
 
 import cors from 'cors'
 import morgan from 'morgan';
+import { connectDB } from './config/dbconfig.js';
+
 const server = express();
 const PORT = process.env.PORT||8000;
 
-
-
+//connection to database
+// connectDB();
+connectDB().then(()=>{server.listen(PORT, error => {
+    error? console.log(error):console.log("Server is running at http://localhost:"+PORT)
+})}).catch((error)=>console.log(error))
 
 
 // middlewares
@@ -19,7 +24,4 @@ server.get('/', (req, res) => {
         
         message:"server is live"
     })
-})
-server.listen(PORT, error => {
-    error? console.log(error):console.log("Server is running at http://localhost:"+PORT)
 })
