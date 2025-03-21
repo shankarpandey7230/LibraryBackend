@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { connectDB } from './src/config/dbconfig.js';
 import authRoute from './src/routes/authRoute.js'
 import { errorHandler } from './src/middleware/errorHandler.js';
+import { responseClient } from './src/middleware/responseClient.js';
 
 const server = express();
 const PORT = process.env.PORT||8000;
@@ -34,9 +35,8 @@ server.use("/api/v1/auth",authRoute)
 
 
 server.get('/', (req, res) => {
-    res.json({
-        
-        message:"server is live"
-    })
+    const message="Server is live"
+    responseClient({ req, res, message })
+
 })
 server.use(errorHandler)

@@ -1,8 +1,8 @@
+import { responseClient } from "./responseClient.js";
+
 export const errorHandler = (error, req, res, next) => {
     const statusCode = error.statusCode || 500;
-    res.status(statusCode).json({
-        status: "error",
-        message:error.message,
-    })
+    const message = error.message
+  responseClient({req,res, message, statusCode})
     
 }
