@@ -1,6 +1,6 @@
 
 
-@rootUrl = http://localhost:8000/
+@rootUrl = http://localhost:8000
 
 #APIs
 
@@ -8,3 +8,24 @@
 ### Server Status
 
 GET {{rootUrl}}
+
+
+
+
+
+## Auth Route api
+
+### Posting new user
+
+POST {{rootUrl}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "fName":"Shankar",
+    "lName":"Pandey",
+    "phone":"0410",
+    "email":"shank@gmail.com",
+    "password":"jkdsaglgjas"
+ 
+}
+
