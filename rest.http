@@ -2,24 +2,48 @@
 
 @rootUrl = http://localhost:8000
 
+<<<<<<< HEAD
 
 ### server status check
+=======
+#APIs
+
+
+### Server Status
+>>>>>>> 632702bc2782d33a0433146f80eb3004181e52ef
 
 GET {{rootUrl}}
 
 
 
+<<<<<<< HEAD
 ### Auth API  post new user
 POST  {{rootUrl}}/api/v1/auth/register
+=======
+
+
+## Auth Route api
+
+### Posting new user
+
+POST {{rootUrl}}/api/v1/auth/register
+>>>>>>> 632702bc2782d33a0433146f80eb3004181e52ef
 Content-Type: application/json
 
 {
     "fName":"Shankar",
     "lName":"Pandey",
+<<<<<<< HEAD
     "email":"bcw31234@a.com",
     "phone":"0101",
     "password":"asdf"
 
 
+=======
+    "phone":"0410",
+    "email":"shankar1234567@gmail.com",
+    "password":"jkdsaglgjas"
+ 
+>>>>>>> 632702bc2782d33a0433146f80eb3004181e52ef
 }
 
