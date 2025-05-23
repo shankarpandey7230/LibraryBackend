@@ -2,24 +2,14 @@
 
 @rootUrl = http://localhost:8000
 
-<<<<<<< HEAD
-
-### server status check
-=======
-#APIs
-
-
-### Server Status
->>>>>>> 632702bc2782d33a0433146f80eb3004181e52ef
 
 GET {{rootUrl}}
 
 
 
-<<<<<<< HEAD
+
 ### Auth API  post new user
-POST  {{rootUrl}}/api/v1/auth/register
-=======
+# sessionId=68304655eaf0518641ff2677&t=7d012619-cf8d-4764-b516-e39f9c8e580f
 
 
 ## Auth Route api
@@ -27,23 +17,30 @@ POST  {{rootUrl}}/api/v1/auth/register
 ### Posting new user
 
 POST {{rootUrl}}/api/v1/auth/register
->>>>>>> 632702bc2782d33a0433146f80eb3004181e52ef
 Content-Type: application/json
 
 {
     "fName":"Shankar",
     "lName":"Pandey",
-<<<<<<< HEAD
-    "email":"bcw31234@a.com",
+    "email":"b@gmail.com",
     "phone":"0101",
-    "password":"asdf"
-
-
-=======
-    "phone":"0410",
-    "email":"shankar1234567@gmail.com",
-    "password":"jkdsaglgjas"
  
->>>>>>> 632702bc2782d33a0433146f80eb3004181e52ef
+    "password":"Asdf!23456"
+ 
+
 }
 
+
+### post to activate user
+
+POST {{rootUrl}}/api/v1/auth/activate-user
+Content-Type: application/json
+
+{
+   "sessionId":"68307bdb7d270ed91079a797",
+   "t":"502714cb-65e1-45aa-8494-448e5d43e087"
+ 
+
+}
+
+# activate-user?sessionId=683048cb2565f014f7c29f5c&t=42cda3bd-944c-470b-91ac-cedfa0268fef

@@ -8,11 +8,12 @@ const SessionSchema = new mongoose.Schema(
     },
     association: {
       type: String,
+      default: "",
     },
     expire: {
       type: Date,
       required: true,
-      default: new Date(Date.now() + 5000),
+      default: new Date(Date.now() + 3600000000),
       expires: 0,
     },
   },
