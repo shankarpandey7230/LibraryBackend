@@ -36,9 +36,7 @@ export const userActivatedNotificationEmailTemplate = ({
         <br/>
         <p>Your account is ready to use. You may now sign in</p>
         <br/>
-        <a href=${url}>
-        <button style="background:green; color:white; padding:2rem">Activate your Account</button>
-        </a>
+    
         
         <br/>
         <br/>

@@ -24,7 +24,6 @@ Content-Type: application/json
     "lName":"Pandey",
     "email":"b@gmail.com",
     "phone":"0101",
- 
     "password":"Asdf!23456"
  
 
@@ -37,10 +36,10 @@ POST {{rootUrl}}/api/v1/auth/activate-user
 Content-Type: application/json
 
 {
-   "sessionId":"68307bdb7d270ed91079a797",
-   "t":"502714cb-65e1-45aa-8494-448e5d43e087"
+   "sessionId":"68314791cc4dfe14aff6ed82",
+   "t":"f66560eb-ed24-417a-b507-f750b75"
  
 
 }
 
-# activate-user?sessionId=683048cb2565f014f7c29f5c&t=42cda3bd-944c-470b-91ac-cedfa0268fef
+# activate-user?sessionId=68314791cc4dfe14aff6ed82&t=f66560eb-ed24-417a-b507-f750b7546e10
