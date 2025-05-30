@@ -8,7 +8,7 @@ export const emailTransporter = () => {
 
     auth: {
       user: process.env.SMTP_EMAIL,
-      pass: process.env.SMTP_PASS,
+      pass: process.env.SMTP_PASSWORD,
     },
   });
   return transporter;
