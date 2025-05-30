@@ -11,3 +11,9 @@ export const createNewUser = (userObj) => {
 export const updateUser = (filter, update) => {
   return UserSchema.findOneAndUpdate(filter, update, { new: true });
 };
+
+// get the user
+
+export const getUserByEmail = (email) => {
+  return UserSchema.findOne({ email });
+};

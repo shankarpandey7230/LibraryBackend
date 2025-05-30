@@ -43,3 +43,17 @@ Content-Type: application/json
 }
 
 # activate-user?sessionId=68314791cc4dfe14aff6ed82&t=f66560eb-ed24-417a-b507-f750b7546e10
+
+
+
+####Login user
+
+POST {{rootUrl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"b@gmail.com",
+    "password":"Asdf!23456"
+ 
+
+}

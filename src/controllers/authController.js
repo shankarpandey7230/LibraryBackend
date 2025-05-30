@@ -1,4 +1,8 @@
-import { createNewUser, updateUser } from "../models/user/UserModel.js";
+import {
+  createNewUser,
+  getUserByEmail,
+  updateUser,
+} from "../models/user/UserModel.js";
 import { responseClient } from "../middlewares/responseClient.js";
 import {
   createNewSession,
@@ -9,7 +13,8 @@ import {
   userActivatedNotificationEmail,
   userActivationUrlEmail,
 } from "../services/email/emailService.js";
-import { hashPassword } from "../utils/bcrypt.js";
+import { comparePassword, hashPassword } from "../utils/bcrypt.js";
+import { getJwts } from "../utils/jwt.js";
 
 export const insertNewUser = async (req, res, next) => {
   try {
@@ -82,6 +87,38 @@ export const activateUser = async (req, res, next) => {
     }
     const message = "Invalid link or token expired";
     const statusCode = 400;
+    responseClient({ req, res, message, statusCode });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    // get the user by email
+    const user = await getUserByEmail(email);
+    if (user?._id) {
+      // console.log(user);
+      // compare password
+      const isPasswordMatch = comparePassword(password, user.password);
+      if (isPasswordMatch) {
+        console.log("Authenticated");
+
+        // jwt creation
+        const jwts = await getJwts(email);
+        // response jwt
+        return responseClient({
+          req,
+          res,
+          message: "Successful login",
+          payload: jwts,
+        });
+      }
+    }
+
+    const message = "Invalid Login Credentials";
+    const statusCode = 401;
     responseClient({ req, res, message, statusCode });
   } catch (error) {
     next(error);
