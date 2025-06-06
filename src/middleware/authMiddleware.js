@@ -1,4 +1,4 @@
-import { responseClient } from "../middlewares/responseClient.js";
+import { responseClient } from "../middleware/responseClient.js";
 import { getOneUser, getUserByEmail } from "../models/user/UserModel.js";
 import { getSession } from "../session/SessionModel.js";
 import {
