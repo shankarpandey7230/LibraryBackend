@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { connectDB } from "./src/config/dbconfig.js";
 import authRoute from "./src/routes/authRoute.js";
+import usersRoute from "./src/routes/usersRoute.js";
 import { errorHandler } from "./src/middlewares/errorHandler.js";
 import { responseClient } from "./src/middlewares/responseClient.js";
 
@@ -18,6 +19,7 @@ app.use(express.json());
 // api endpoints
 
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/users", usersRoute);
 
 // server status
 app.get("/", (req, res) => {

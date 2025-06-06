@@ -124,3 +124,17 @@ export const loginUser = async (req, res, next) => {
     next(error);
   }
 };
+
+export const logoutUser = async (req, res, next) => {
+  try {
+    // get the token ,
+    const { email } = req.userInfo;
+    // update refreshJWT to empty string
+    await updateUser({ email }, { refreshJWT: "" });
+    // remove the accessJWT from session table
+    await deleteSession({ association: email });
+    responseClient({ req, res, message: "You are logged out" });
+  } catch (error) {
+    next();
+  }
+};

@@ -3,6 +3,7 @@ import {
   activateUser,
   insertNewUser,
   loginUser,
+  logoutUser,
 } from "../controllers/authController.js";
 
 import {
@@ -10,6 +11,10 @@ import {
   newUserDataValidation,
   userActivationDataValidation,
 } from "../middleware/validation/authDataValidation.js";
+import {
+  renewAccessJWTMiddleware,
+  userAuthMiddleWare,
+} from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -17,5 +22,7 @@ const router = express.Router();
 router.post("/register", newUserDataValidation, insertNewUser);
 router.post("/activate-user", userActivationDataValidation, activateUser);
 router.post("/login", loginDataValidation, loginUser);
+router.get("/renew-jwt", renewAccessJWTMiddleware);
+router.get("/logout", userAuthMiddleWare, logoutUser);
 
 export default router;

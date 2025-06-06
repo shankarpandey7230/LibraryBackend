@@ -22,7 +22,7 @@ Content-Type: application/json
 {
     "fName":"Shankar",
     "lName":"Pandey",
-    "email":"b@gmail.com",
+    "email":"ba1a23@gmail.com",
     "phone":"0101",
     "password":"Asdf!23456"
  
@@ -52,8 +52,19 @@ POST {{rootUrl}}/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email":"b@gmail.com",
+    "email":"ba1a23@gmail.com",
     "password":"Asdf!23456"
  
 
 }
+
+
+####Get user profiles
+
+GET {{rootUrl}}/api/v1/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NDg5MTYzNjUsImV4cCI6MTc0ODkxNzI2NX0.jqTnJPmbgRGWLKCuqUKG0fvecebiv0vKUzTYDqf1u9k
+
+###Refresh JWT
+
+GET {{rootUrl}}/api/v1/auth/renew-jwt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NDg5MTYyNTgsImV4cCI6MTc1MTUwODI1OH0.pY6myAmxBGys1AeoAtPVlpVv6e39LyuuZXaYCJV25wQ
