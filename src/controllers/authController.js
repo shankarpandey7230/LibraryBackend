@@ -3,7 +3,7 @@ import {
   getUserByEmail,
   updateUser,
 } from "../models/user/UserModel.js";
-import { responseClient } from "../middlewares/responseClient.js";
+import { responseClient } from "../middleware/responseClient.js";
 import {
   createNewSession,
   deleteSession,
