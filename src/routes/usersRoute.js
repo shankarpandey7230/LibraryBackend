@@ -1,5 +1,5 @@
 import express from "express";
-import { responseClient } from "../middlewares/responseClient.js";
+import { responseClient } from "../middleware/responseClient.js";
 
 import { userAuthMiddleWare } from "../middleware/authMiddleware.js";
 
