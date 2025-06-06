@@ -4,7 +4,10 @@ export const connectDB = async () => {
   if (!process.env.MONGO_URL) {
     throw new Error("Check your database connection string");
   }
-  return mongoose.connect(process.env.MONGO_URL);
+  return mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 };
 
 // export const connectDB = async () => {
