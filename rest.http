@@ -62,9 +62,19 @@ Content-Type: application/json
 ####Get user profiles
 
 GET {{rootUrl}}/api/v1/users/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NDg5MTYzNjUsImV4cCI6MTc0ODkxNzI2NX0.jqTnJPmbgRGWLKCuqUKG0fvecebiv0vKUzTYDqf1u9k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NDkzOTE0MzQsImV4cCI6MTc0OTM5MTQ5NH0.BLIdGnd9fvGAIpBofQ8J2mX7A2xfsiZli8NdkLr2CY4
 
-###Refresh JWT
+
 
 GET {{rootUrl}}/api/v1/auth/renew-jwt
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NDg5MTYyNTgsImV4cCI6MTc1MTUwODI1OH0.pY6myAmxBGys1AeoAtPVlpVv6e39LyuuZXaYCJV25wQ
+
+
+### OTP REQUEST
+
+POST {{rootUrl}}/api/v1/auth/otp
+Content-Type: application/json
+
+{
+    "email":"ba1a23@gmail.com"
+}
