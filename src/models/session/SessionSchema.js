@@ -17,7 +17,7 @@ const SessionSchema = new mongoose.Schema(
       expires: 0,
     },
   },
-  { timeStamp: true }
+  { timestamps: true }
 );
 
 export default mongoose.model("Session", SessionSchema);

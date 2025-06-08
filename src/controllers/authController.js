@@ -15,6 +15,7 @@ import {
 } from "../services/email/emailService.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
 import { getJwts } from "../utils/jwt.js";
+import { generateOtp } from "../utils/rangdomGenerator.js";
 
 export const insertNewUser = async (req, res, next) => {
   try {
@@ -96,8 +97,10 @@ export const activateUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(req.body);
     // get the user by email
-    const user = await getUserByEmail(email);
+    const user = await getUserByEmail(email.toLowerCase());
+    console.log("USER", user);
     if (user?._id) {
       // console.log(user);
       // compare password
@@ -137,4 +140,37 @@ export const logoutUser = async (req, res, next) => {
   } catch (error) {
     next();
   }
+};
+
+export const generateOTP = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    // console.log(email);
+    // get userBy Email
+    const user = await getUserByEmail(email);
+    console.log(user);
+
+    // if user is there generate otp
+    if (user?._id) {
+      // generate otp
+      const otp = generateOtp();
+      console.log("Generated", otp);
+
+      // store in session table
+      const session = await createNewSession({
+        token: otp,
+        association: email,
+      });
+      if (session?._id) {
+        console.log(session);
+      }
+      // send otp to the email
+    }
+
+    responseClient({
+      req,
+      res,
+      message: "Otp is being sent to your email",
+    });
+  } catch (error) {}
 };

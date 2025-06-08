@@ -15,7 +15,7 @@ export const updateUser = (filter, update) => {
 // get the user
 
 export const getUserByEmail = (email) => {
-  return UserSchema.findOne({ email });
+  return UserSchema.findOne({ email: email.toLowerCase() });
 };
 
 export const getOneUser = (filter) => {
