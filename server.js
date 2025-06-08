@@ -4,8 +4,8 @@ import morgan from "morgan";
 import { connectDB } from "./src/config/dbconfig.js";
 import authRoute from "./src/routes/authRoute.js";
 import usersRoute from "./src/routes/usersRoute.js";
-import { errorHandler } from "./src/middlewares/errorHandler.js";
-import { responseClient } from "./src/middlewares/responseClient.js";
+import { errorHandler } from "./src/middleware/errorHandler.js";
+import { responseClient } from "./src/middleware/responseClient.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;

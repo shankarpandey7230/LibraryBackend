@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { responseClient } from "../../middlewares/responseClient.js";
+import { responseClient } from "../../middleware/responseClient.js";
 
 export const validateData = ({ req, res, next, obj }) => {
   //   create schema or rules
