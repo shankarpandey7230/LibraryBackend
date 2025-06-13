@@ -10,6 +10,7 @@ import {
 } from "../models/session/SessionModel.js";
 import { v4 as uuidv4 } from "uuid";
 import {
+  passwordResetOTPNotificationEmail,
   userActivatedNotificationEmail,
   userActivationUrlEmail,
 } from "../services/email/emailService.js";
@@ -144,27 +145,37 @@ export const logoutUser = async (req, res, next) => {
 
 export const generateOTP = async (req, res, next) => {
   try {
+    console.log("BODY:", req.body);
     const { email } = req.body;
+
     // console.log(email);
     // get userBy Email
-    const user = await getUserByEmail(email);
+    const user = typeof email === "string" ? await getUserByEmail(email) : null;
     console.log(user);
 
     // if user is there generate otp
     if (user?._id) {
       // generate otp
       const otp = generateOtp();
-      console.log("Generated", otp);
+      // console.log("Generated", otp);
 
       // store in session table
       const session = await createNewSession({
         token: otp,
         association: email,
+        expire: new Date(Date.now() + 1000 * 60 * 5),
       });
       if (session?._id) {
-        console.log(session);
+        // console.log(session);
+        // send otp to the email
+
+        const info = await passwordResetOTPNotificationEmail({
+          email,
+          name: user.fName,
+          otp,
+        });
+        // console.log(info);
       }
-      // send otp to the email
     }
 
     responseClient({
@@ -172,5 +183,7 @@ export const generateOTP = async (req, res, next) => {
       res,
       message: "Otp is being sent to your email",
     });
-  } catch (error) {}
+  } catch (error) {
+    return next(error);
+  }
 };

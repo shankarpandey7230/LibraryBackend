@@ -43,3 +43,23 @@ export const userActivatedNotificationEmailTemplate = ({
         `,
   };
 };
+
+export const passwordResetOTPSendTemplate = ({ email, name, otp }) => {
+  return {
+    from: `LibraryManagement <${process.env.SMTP_EMAIL}>`,
+    to: email, //list of receiver
+    subject: "Your OTP to reset the passport",
+    text: `Hello ${name}.  Here is your OTP and will expire in 5 mins and OT is ${otp}`,
+    html: `
+        <p> Hello ${name}</p>
+        <br/>
+        <br/>
+        <p>Here is your OTP and will expire in 5 mins and OTP is ${otp}</p>
+        <br/>
+    
+        
+        <br/>
+        <br/>
+        `,
+  };
+};
