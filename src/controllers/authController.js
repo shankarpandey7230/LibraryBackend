@@ -7,12 +7,14 @@ import { responseClient } from "../middleware/responseClient.js";
 import {
   createNewSession,
   deleteSession,
+  getSession,
 } from "../models/session/SessionModel.js";
 import { v4 as uuidv4 } from "uuid";
 import {
   passwordResetOTPNotificationEmail,
   userActivatedNotificationEmail,
   userActivationUrlEmail,
+  userProfileUpdatedNotificationEmail,
 } from "../services/email/emailService.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
 import { getJwts } from "../utils/jwt.js";
@@ -33,6 +35,7 @@ export const insertNewUser = async (req, res, next) => {
       const session = await createNewSession({
         token: uuidv4(),
         association: user.email,
+        expire: new Date(Date.now() + 1000 * 60 * 5),
       });
       if (session?._id) {
         const url = `${process.env.ROOT_URL}/activate-user?sessionId=${session._id}&t=${session.token}`;
@@ -185,5 +188,41 @@ export const generateOTP = async (req, res, next) => {
     });
   } catch (error) {
     return next(error);
+  }
+};
+
+export const resetNewPassword = async (req, res, next) => {
+  // console.log(req.body);
+
+  try {
+    const { email, password, otp } = req.body;
+    const session = await getSession({
+      token: otp,
+      association: email,
+    });
+    if (session?._id) {
+      // password encryption
+      const hashPass = hashPassword(password);
+      // update user table
+      const user = await updateUser({ email }, { password: hashPass });
+      if (user?._id) {
+        // send email notification
+        userProfileUpdatedNotificationEmail({ name: user.fName, email });
+
+        return responseClient({
+          req,
+          res,
+          message: "Your password has been updated now and you may login now",
+        });
+      }
+    }
+    responseClient({
+      req,
+      res,
+      statusCode: 400,
+      message: "Invalid Data or token is expired",
+    });
+  } catch (error) {
+    next(error);
   }
 };

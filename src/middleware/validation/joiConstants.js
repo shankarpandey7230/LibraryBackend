@@ -13,3 +13,5 @@ export const SESSION = Joi.string().min(10).max(30);
 export const SESSIONREQ = SESSION.required();
 export const TOKEN = Joi.string().min(10);
 export const TOKENREQ = TOKEN.required();
+
+export const OTP = Joi.number().min(999).max(9999).required();
