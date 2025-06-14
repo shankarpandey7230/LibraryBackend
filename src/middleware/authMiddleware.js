@@ -1,6 +1,7 @@
 import { responseClient } from "../middleware/responseClient.js";
+import { getSession } from "../models/session/SessionModel.js";
 import { getOneUser, getUserByEmail } from "../models/user/UserModel.js";
-import { getSession } from "../session/SessionModel.js";
+
 import {
   createAccessJWT,
   verifyAccessJWT,

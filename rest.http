@@ -22,7 +22,7 @@ Content-Type: application/json
 {
     "fName":"Shankar",
     "lName":"Pandey",
-    "email":"ba1a23@gmail.com",
+    "email":"bala23@gmail.com",
     "phone":"0101",
     "password":"Asdf!23456"
  
@@ -53,7 +53,7 @@ Content-Type: application/json
 
 {
     "email":"ba1a23@gmail.com",
-    "password":"Asdf!23456"
+    "password":"fdfASdf!2"
  
 
 }
@@ -77,4 +77,17 @@ Content-Type: application/json
 
 {
     "email":"ba1a23@gmail.com"
+}
+
+### reset password 
+
+POST {{rootUrl}}/api/v1/auth/reset-password
+Content-Type: application/json
+
+{
+    "email":"ba1a23@gmail.com",
+    "password":"fdfASdf!2",
+    "confirmPassword":"fdfASdf!2",
+    "otp":3874
+    
 }
