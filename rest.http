@@ -53,7 +53,7 @@ Content-Type: application/json
 
 {
     "email":"ba1a23@gmail.com",
-    "password":"fdfASdf!2"
+    "password":"fdfASdf!123"
  
 
 }
@@ -84,10 +84,40 @@ Content-Type: application/json
 POST {{rootUrl}}/api/v1/auth/reset-password
 Content-Type: application/json
 
+
 {
     "email":"ba1a23@gmail.com",
-    "password":"fdfASdf!2",
-    "confirmPassword":"fdfASdf!2",
+    "password":"fdfASdf!123",
+    "confirmPassword":"fdfASdf!123",
     "otp":3874
     
+}
+
+
+##### book api
+
+#### GET Books
+
+GET {{rootUrl}}/api/v1/books
+
+
+
+
+### Post Book
+
+POST {{rootUrl}}/api/v1/books
+Content-Type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTA1MTk0MjUsImV4cCI6MTc1MDYwNTgyNX0.swUagBR7frAFw-x_b66vJIEMSUPYAZNie_bXu_eHnPk
+
+
+{
+  
+  "title": "Design Patterns Explained",
+  "year": 2019,
+  "author": "Alan Shalloway",
+  "imgUrl": "https://example.com/images/design-patterns.jpg",
+  "isbn": "9780321247754",
+  "genre": "Software Engineering",
+"description":"Lorem sagd"
+
 }

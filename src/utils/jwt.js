@@ -7,14 +7,14 @@ import { updateUser } from "../models/user/UserModel.js";
 export const createAccessJWT = async (email) => {
   // create
   const token = jwt.sign({ email }, process.env.ACCESSJWT_SECRET, {
-    expiresIn: "1m",
+    expiresIn: "1d",
   });
 
   // store
   const obj = {
     token,
     association: email,
-    expire: new Date(Date.now() + 15 * 60 * 1000), //15min
+    expire: new Date(Date.now() + 20 * 60 * 1000), //15min
   };
   const newSession = await createNewSession(obj);
   return newSession?._id ? token : null;
