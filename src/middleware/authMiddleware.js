@@ -17,7 +17,7 @@ export const userAuthMiddleWare = async (req, res, next) => {
 
     //  check if valid
     const decoded = verifyAccessJWT(token);
-    console.log(decoded);
+    // console.log(decoded);
 
     if (decoded.email) {
       const tokenSession = await getSession({ token });
@@ -25,7 +25,7 @@ export const userAuthMiddleWare = async (req, res, next) => {
         // get user by email
 
         const user = await getUserByEmail(decoded.email);
-        console.log("User status:", user.status);
+        // console.log("User status:", user.status);
         if (user?._id && user.status === "active") {
           req.userInfo = user;
           return next();
@@ -37,6 +37,23 @@ export const userAuthMiddleWare = async (req, res, next) => {
   }
 
   responseClient({ req, res, message, statusCode: 401 });
+};
+
+// check users role admin
+
+export const adminAuthMiddleware = (req, res, next) => {
+  try {
+    req.userInfo.role === "admin"
+      ? next()
+      : responseClient({
+          req,
+          res,
+          message: "You do not have access to this resource",
+          statusCode: 403,
+        });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const renewAccessJWTMiddleware = async (req, res, next) => {

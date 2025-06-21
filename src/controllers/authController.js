@@ -192,10 +192,10 @@ export const generateOTP = async (req, res, next) => {
 };
 
 export const resetNewPassword = async (req, res, next) => {
-  // console.log(req.body);
-
   try {
     const { email, password, otp } = req.body;
+    console.log(email, password);
+
     const session = await getSession({
       token: otp,
       association: email,
