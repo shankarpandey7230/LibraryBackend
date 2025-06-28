@@ -101,7 +101,7 @@ export const activateUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     // get the user by email
     const user = await getUserByEmail(email.toLowerCase());
     console.log("USER", user);
@@ -154,7 +154,7 @@ export const generateOTP = async (req, res, next) => {
     // console.log(email);
     // get userBy Email
     const user = typeof email === "string" ? await getUserByEmail(email) : null;
-    console.log(user);
+    // console.log(user);
 
     // if user is there generate otp
     if (user?._id) {
