@@ -1,5 +1,9 @@
 import express from "express";
-import { insertNewBook } from "../controllers/bookController.js";
+import {
+  getAllBooksController,
+  getAllPublicBooksController,
+  insertNewBook,
+} from "../controllers/bookController.js";
 import {
   adminAuthMiddleware,
   userAuthMiddleWare,
@@ -8,17 +12,22 @@ import { newBookDataValidation } from "../middleware/validation/bookDataValidati
 
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.json({ message: "TODO" });
-});
+router.get(
+  "/admin",
+  userAuthMiddleWare,
+  adminAuthMiddleware,
+  getAllBooksController
+);
+// // Public book access
+router.get("/", getAllPublicBooksController);
 
 // Inserting the book
 
 router.post(
   "/",
   userAuthMiddleWare,
-  newBookDataValidation,
   adminAuthMiddleware,
+  newBookDataValidation,
   insertNewBook
 );
 export default router;
