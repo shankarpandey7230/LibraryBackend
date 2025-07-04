@@ -104,8 +104,7 @@ GET {{rootUrl}}/api/v1/books
 ### Get all books for admin
 
 GET {{rootUrl}}/api/v1/books/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTA4MTg5NjQsImV4cCI6MTc1MDkwNTM2NH0.0DrdP1RaJWoAZeZ0qfXwaIfJ2ZknTmK3LQMtvBfijoA
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTE0MjI2MDQsImV4cCI6MTc1MTUwOTAwNH0.9Aj1y8HP_J2IgEwBVNf3_Cq_a6hj4_3aDc7AGMs4X0k
 
 
 ### Post Book
@@ -123,6 +122,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM
   "imgUrl": "https://example.com/images/design-patterns.jpg",
   "isbn": "9780321247754",
   "genre": "Software Engineering",
-"description":"Lorem sagd"
+  "description":"Lorem dwqsagd"
+
+}
+
+
+###Update Book
+
+PUT  {{rootUrl}}/api/v1/books
+Content-Type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhMWEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTE0MjI2MDQsImV4cCI6MTc1MTUwOTAwNH0.9Aj1y8HP_J2IgEwBVNf3_Cq_a6hj4_3aDc7AGMs4X0k
+
+
+{
+  "_id": "686005906678f45db8da00c3",
+  "status":"active",
+  "title": "Design Patterns Explained",
+  "year": 2019,
+  "author": "Alan Shalloway",
+  "imgUrl": "https://example.com/images/design-patterns.jpg",
+  "expectedAvailable" :2020,
+  "genre": "Software Engineering",
+
+  "description":"Lorem sagd"
 
 }

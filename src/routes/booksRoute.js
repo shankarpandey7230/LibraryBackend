@@ -3,12 +3,16 @@ import {
   getAllBooksController,
   getAllPublicBooksController,
   insertNewBook,
+  updatedBookController,
 } from "../controllers/bookController.js";
 import {
   adminAuthMiddleware,
   userAuthMiddleWare,
 } from "../middleware/authMiddleware.js";
-import { newBookDataValidation } from "../middleware/validation/bookDataValidation.js";
+import {
+  newBookDataValidation,
+  updateBookDataValidation,
+} from "../middleware/validation/bookDataValidation.js";
 
 const router = express.Router();
 
@@ -29,5 +33,14 @@ router.post(
   adminAuthMiddleware,
   newBookDataValidation,
   insertNewBook
+);
+// update book
+
+router.put(
+  "/",
+  userAuthMiddleWare,
+  adminAuthMiddleware,
+  updateBookDataValidation,
+  updatedBookController
 );
 export default router;
