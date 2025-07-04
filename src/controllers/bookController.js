@@ -1,6 +1,7 @@
 import { responseClient } from "../middleware/responseClient.js";
 import {
   createNewBook,
+  deleteBook,
   getAllBooks,
   getAllPublicBooks,
   updateBook,
@@ -91,6 +92,28 @@ export const updatedBookController = async (req, res, next) => {
           req,
           res,
           message: "Unable to update the book, Try again later",
+          statusCode: 400,
+        });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteBookController = async (req, res, next) => {
+  try {
+    //
+    const { _id } = req.params;
+    const book = await deleteBook(_id);
+    book?._id
+      ? responseClient({
+          req,
+          res,
+          message: "The book has been deleted successfully",
+        })
+      : responseClient({
+          req,
+          res,
+          message: "Unable to delete the book. Something went wrong",
           statusCode: 400,
         });
   } catch (error) {
