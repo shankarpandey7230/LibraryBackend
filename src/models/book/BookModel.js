@@ -13,3 +13,7 @@ export const getAllPublicBooks = () => {
 export const getAllBooks = () => {
   return BookSchema.find();
 };
+
+export const updateBook = ({ _id, ...rest }) => {
+  return BookSchema.findByIdAndUpdate(_id, rest);
+};
