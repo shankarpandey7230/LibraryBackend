@@ -2,6 +2,7 @@ import Joi from "joi";
 import { responseClient } from "../../middleware/responseClient.js";
 
 export const validateData = ({ req, res, next, obj }) => {
+  console.log(req.body);
   //   create schema or rules
   const schema = Joi.object(obj);
   //pass your data, req.body , to the schema
