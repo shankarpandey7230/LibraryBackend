@@ -1,4 +1,5 @@
 import express from "express";
+
 import {
   deleteBookController,
   getAllBooksController,
@@ -14,7 +15,8 @@ import {
   newBookDataValidation,
   updateBookDataValidation,
 } from "../middleware/validation/bookDataValidation.js";
-
+import multer from "multer";
+import { upload } from "../utils/multer.js";
 const router = express.Router();
 
 router.get(
@@ -32,6 +34,8 @@ router.post(
   "/",
   userAuthMiddleWare,
   adminAuthMiddleware,
+  upload.array("images", 12),
+  // upload.single("image"),
   newBookDataValidation,
   insertNewBook
 );
