@@ -15,7 +15,7 @@ export const getAllBooks = () => {
 };
 
 export const updateBook = ({ _id, ...rest }) => {
-  return BookSchema.findByIdAndUpdate(_id, rest);
+  return BookSchema.findByIdAndUpdate(_id, rest, { new: true });
 };
 
 export const deleteBook = (_id) => {

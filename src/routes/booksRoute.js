@@ -34,8 +34,8 @@ router.post(
   "/",
   userAuthMiddleWare,
   adminAuthMiddleware,
-  upload.array("images", 12),
-  // upload.single("image"),
+  // upload.array("image", 12),
+  upload.single("image"),
   newBookDataValidation,
   insertNewBook
 );
@@ -45,6 +45,7 @@ router.put(
   "/",
   userAuthMiddleWare,
   adminAuthMiddleware,
+  upload.array("images", 2),
   updateBookDataValidation,
   updatedBookController
 );
