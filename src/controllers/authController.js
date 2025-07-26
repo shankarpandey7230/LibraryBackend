@@ -104,7 +104,7 @@ export const loginUser = async (req, res, next) => {
     // console.log(req.body);
     // get the user by email
     const user = await getUserByEmail(email.toLowerCase());
-    console.log("USER", user);
+    // console.log("USER", user);
     if (user?._id) {
       // console.log(user);
       // compare password
