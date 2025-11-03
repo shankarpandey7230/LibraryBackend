@@ -115,7 +115,7 @@ export const updatedBookController = async (req, res, next) => {
       },
     };
     if (!req.body.imageList.includes(req.body.imgUrl)) {
-      req.body.imageList.unshift(req.body.imgUrl); // ✅ insert thumbnail at the start
+      req.body.imageList.unshift(req.body.imgUrl);
     }
 
     // console.log("Update Payload:", req.body);
