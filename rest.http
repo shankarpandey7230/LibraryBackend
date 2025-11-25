@@ -97,9 +97,13 @@ Content-Type: application/json
 ##### book api
 
 #### GET Books for public
+### Get Single Books
+GET {{rootUrl}}/api/v1/books/public/book-to-code
+
+
+
 
 GET {{rootUrl}}/api/v1/books
-
 
 ### Get all books for admin
 

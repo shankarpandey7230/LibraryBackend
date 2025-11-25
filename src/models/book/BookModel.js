@@ -5,6 +5,14 @@ import BookSchema from "./BookSchema.js";
 export const createNewBook = (bookObj) => {
   return BookSchema(bookObj).save();
 };
+//
+export const createManyNewBooks = (books) => {
+  return BookSchema.insertMany(books);
+};
+
+export const emptyBooks = () => {
+  return BookSchema.deleteMany({});
+};
 
 export const getAllPublicBooks = () => {
   return BookSchema.find({ status: "active" });
@@ -20,4 +28,9 @@ export const updateBook = ({ _id, ...rest }) => {
 
 export const deleteBook = (_id) => {
   return BookSchema.findByIdAndDelete(_id);
+};
+
+// to find a single book (filter={slug and status:"active"})
+export const findABook = (filter) => {
+  return BookSchema.findOne(filter);
 };

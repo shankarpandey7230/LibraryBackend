@@ -2,6 +2,7 @@ import { responseClient } from "../middleware/responseClient.js";
 import {
   createNewBook,
   deleteBook,
+  findABook,
   getAllBooks,
   getAllPublicBooks,
   updateBook,
@@ -79,13 +80,27 @@ export const getAllPublicBooksController = async (req, res, next) => {
       req,
       res,
       payload,
-      message: "all books has been obtained",
+      message: "here are the public book list",
     });
   } catch (error) {
     next(error);
   }
 };
 
+export const getAllSinglePublicBooksController = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+    const payload = await findABook({ slug, status: "active" });
+    responseClient({
+      req,
+      res,
+      payload,
+      message: "You got your selected book",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const updatedBookController = async (req, res, next) => {
   try {
     const { _id, fName } = req.userInfo;
@@ -115,7 +130,7 @@ export const updatedBookController = async (req, res, next) => {
       },
     };
     if (!req.body.imageList.includes(req.body.imgUrl)) {
-      req.body.imageList.unshift(req.body.imgUrl); // ✅ insert thumbnail at the start
+      req.body.imageList.unshift(req.body.imgUrl);
     }
 
     // console.log("Update Payload:", req.body);

@@ -4,6 +4,7 @@ import {
   deleteBookController,
   getAllBooksController,
   getAllPublicBooksController,
+  getAllSinglePublicBooksController,
   insertNewBook,
   updatedBookController,
 } from "../controllers/bookController.js";
@@ -19,14 +20,19 @@ import multer from "multer";
 import { upload } from "../utils/multer.js";
 const router = express.Router();
 
+// // Public book access
+
+router.get("/", getAllPublicBooksController);
+
+// public api access for single book
+router.get("/public/:slug", getAllSinglePublicBooksController);
+
 router.get(
   "/admin",
   userAuthMiddleWare,
   adminAuthMiddleware,
   getAllBooksController
 );
-// // Public book access
-router.get("/", getAllPublicBooksController);
 
 // Inserting the book
 
