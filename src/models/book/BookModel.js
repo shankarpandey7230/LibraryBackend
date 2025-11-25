@@ -29,3 +29,8 @@ export const updateBook = ({ _id, ...rest }) => {
 export const deleteBook = (_id) => {
   return BookSchema.findByIdAndDelete(_id);
 };
+
+// to find a single book (filter={slug and status:"active"})
+export const findABook = (filter) => {
+  return BookSchema.findOne(filter);
+};
