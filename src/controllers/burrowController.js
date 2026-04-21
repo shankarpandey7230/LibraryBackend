@@ -1,5 +1,9 @@
 import { responseClient } from "../middleware/responseClient.js";
-import { createNewBurrows } from "../models/burrowHistory/BurrowModel.js";
+import { updateBook } from "../models/book/BookModel.js";
+import {
+  createNewBurrows,
+  getBurrows,
+} from "../models/burrowHistory/BurrowModel.js";
 
 const DUE_DAYS = 15;
 export const insertNewBurrow = async (req, res, next) => {
@@ -20,18 +24,45 @@ export const insertNewBurrow = async (req, res, next) => {
     // console.log(req.body);
     const burrow = await createNewBurrows(req.body);
     if (burrow.length) {
-      responseClient({
-        req,
-        res,
-        message: "Burrowed book and  added Successfully",
-        payload: burrow,
+      // update booktable with expectedAvailableDate = dueDate
+      burrow.map(async ({ bookId }) => {
+        await updateBook({ _id: bookId, expectedAvailable: dueDate });
       });
-    } else {
+    }
+    burrow.length
+      ? responseClient({
+          req,
+          res,
+          message: "Burrowed book and  added Successfully",
+          payload: burrow,
+        })
+      : responseClient({
+          req,
+          res,
+          message: "Unable to add the book in database try again later",
+          statusCode: 401,
+        });
+  } catch (error) {
+    next(error);
+  }
+};
+export const getBurrowsController = async (req, res, next) => {
+  try {
+    const { _id, role } = req.userInfo;
+    const path = req.path;
+    console.log(path);
+    const isAdmin = path === "/admin";
+
+    // console.log(req.body);
+    const burrow = isAdmin
+      ? await getBurrows()
+      : await getBurrows({ userId: _id });
+    if (burrow.length) {
       responseClient({
         req,
         res,
-        message: "Unable to add the book in database try again later",
-        statusCode: 401,
+        message: "Here is the burrowed list",
+        payload: burrow,
       });
     }
   } catch (error) {

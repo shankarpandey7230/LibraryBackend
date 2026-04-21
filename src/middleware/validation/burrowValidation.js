@@ -17,6 +17,7 @@ export const newBurrowDataValidation = (req, res, next) => {
     bookId: SHORT_STR_REQ,
     booTitle: YEAR_REQ,
     thumbnail: SHORT_STR_REQ,
+    bookSlug: SHORT_STR_REQ,
   };
   validateData({ req, res, next, obj });
 };
