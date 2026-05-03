@@ -3,7 +3,8 @@ import { updateBook } from "../models/book/BookModel.js";
 import {
   createNewBurrows,
   getBurrows,
-} from "../models/burrowHistory/BurrowModel.js";
+  updateBurrows,
+} from "../models/burrowHistory/BurrowHistoryModel.js";
 
 const DUE_DAYS = 15;
 export const insertNewBurrow = async (req, res, next) => {
@@ -65,6 +66,55 @@ export const getBurrowsController = async (req, res, next) => {
         payload: burrow,
       });
     }
+  } catch (error) {
+    next(error);
+  }
+};
+export const returnBookController = async (req, res, next) => {
+  try {
+    const { _id } = req.userInfo;
+    // console.log(_id);
+    // console.log(req.body);
+    // user id and burrow id
+    // update borrow table
+
+    const filter = {
+      _id: req.body._id,
+      userId: _id,
+    };
+    const obj = {
+      isReturned: true,
+      returnedDate: new Date(),
+    };
+    const result = await updateBurrows(filter, obj);
+    if (result?._id) {
+      const updatedBook = await updateBook({
+        _id: result.bookId,
+        expectedAvailable: null,
+      });
+      if (updatedBook?._id) {
+        // book returned successfully
+        return responseClient({
+          req,
+          res,
+          message: "Your book has been returned successfully",
+        });
+      }
+      return responseClient({
+        req,
+        res,
+        message: "Unable to return the book, Please contact admin",
+        statusCode: 400,
+      });
+    }
+    return responseClient({
+      req,
+      res,
+      message: "Burrow record not found",
+      statusCode: 404,
+    });
+    //updateBooktable:ExpectedAvailable = null
+    // send email notification:TODO
   } catch (error) {
     next(error);
   }
