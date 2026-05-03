@@ -7,6 +7,7 @@ import {
 import {
   getBurrowsController,
   insertNewBurrow,
+  returnBookController,
 } from "../controllers/burrowController.js";
 
 const router = express.Router();
@@ -21,4 +22,7 @@ router.get(
 );
 // return user specific borrow list only
 router.get("/user", userAuthMiddleWare, getBurrowsController);
+
+// return book back to library
+router.patch("/", userAuthMiddleWare, returnBookController);
 export default router;
