@@ -6,6 +6,7 @@ import authRoute from "./src/routes/authRoute.js";
 import usersRoute from "./src/routes/usersRoute.js";
 import booksRoute from "./src/routes/booksRoute.js";
 import burrowRoute from "./src/routes/burrowRoute.js";
+import reviewRoute from "./src/routes/reviewRoute.js";
 import { errorHandler } from "./src/middleware/errorHandler.js";
 import { responseClient } from "./src/middleware/responseClient.js";
 
@@ -31,6 +32,8 @@ app.use("/api/v1/books", booksRoute);
 
 // burrow routes
 app.use("/api/v1/burrows", burrowRoute);
+
+app.use("/api/v1/reviews", reviewRoute);
 // server status
 app.get("/", (req, res) => {
   const message = "Server is Working";

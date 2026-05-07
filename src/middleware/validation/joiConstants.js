@@ -46,3 +46,5 @@ export const ISBN = Joi.string()
   .messages({ "string.pattern.base": "ISBN is not in valid format" });
 
 export const ISBN_REQ = ISBN.required();
+
+export const RATING = Joi.number().integer().min(1).max(5);
